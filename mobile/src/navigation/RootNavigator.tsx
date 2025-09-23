@@ -1,23 +1,41 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+// src/navigation/RootNavigator.tsx
+
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+
 import DashboardScreen from '../screens/DashboardScreen';
 import StudentsScreen from '../screens/StudentsScreen';
+import StudentDetailScreen from '../screens/StudentDetailScreen';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
-const RootNavigator = () => {
+function TabNavigator() {
   return (
-    <NavigationContainer>
-        <Tab.Navigator>
-<Tab.Screen name='Dashboard' component={DashboardScreen}/>
-<Tab.Screen name='Students' component={StudentsScreen}/>
-
-
-        </Tab.Navigator>
-    </NavigationContainer>
-  )
+    <Tab.Navigator>
+      <Tab.Screen name="Dashboard" component={DashboardScreen} />
+      <Tab.Screen name="Students" component={StudentsScreen} />
+    </Tab.Navigator>
+  );
 }
 
-export default RootNavigator
+export default function RootNavigator() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={TabNavigator}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="StudentDetail"
+          component={StudentDetailScreen}
+          options={{ title: 'Öğrenci Detayı' }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}

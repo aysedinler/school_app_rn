@@ -4,7 +4,7 @@ import React from 'react'
 const DashboardScreen = () => {
   return (
     <View>
-      <Text>Dashboard</Text>
+      <Text>Dashboar</Text>
     </View>
   )
 }
