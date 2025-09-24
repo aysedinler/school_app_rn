@@ -6,4 +6,8 @@ export interface Student {
   classId: string;
   gpa: number;
   profileImage: string;
+  email: string;
+  phone: string;
+  enrollmentDate: string;
 }
+
